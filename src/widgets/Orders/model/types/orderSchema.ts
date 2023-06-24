@@ -1,12 +1,7 @@
 import { IProduct } from 'shared/types/IProduct';
 
 export interface IOrderSchema {
-  orders: IOrderItem[];
+  orders: IProduct[];
   totalPrice: number;
   totalQuantity: number;
-}
-
-export interface IOrderItem {
-  product: IProduct;
-  quantity: number;
 }

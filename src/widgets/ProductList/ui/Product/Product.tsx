@@ -19,9 +19,9 @@ const Product: FC = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector((store) => store.product.product);
   const categories = useAppSelector((store) => store.categories.categories);
+  const orders = useAppSelector((store) => store.order.orders);
   const [quantity, setQuantity] = useState(0);
-
-  const category = categories.find((item) => item.id === Number(categoryId));
+  const [availableQuantity, setAvailableQuantity] = useState(product?.quantity);
 
   useEffect(() => {
     if (productId) {
@@ -29,13 +29,25 @@ const Product: FC = () => {
     }
   }, []);
 
+  const category = categories.find((item) => item.id === Number(categoryId));
+
+  useEffect(() => {
+    const productInTheBasket = orders.find((item) => item.id === product?.id);
+    if (productInTheBasket && product) {
+      const qnty = product.quantity - productInTheBasket.quantity;
+      setAvailableQuantity(qnty);
+    } else if (product) {
+      setAvailableQuantity(product.quantity);
+    }
+  }, [product, orders]);
+
   const onChange = (e: number) => {
     setQuantity(e);
   };
 
   const onBuy = () => {
     if (product) {
-      dispatch(orderActions.addProduct({ product, quantity }));
+      dispatch(orderActions.addProduct({ ...product, quantity }));
     }
   };
 
@@ -46,21 +58,26 @@ const Product: FC = () => {
           <img src={image} className={s.image} alt='Изображение товара' />
         </div>
         <div className={s.flexColumn}>
-          <NumericInput
-            className={s.input}
-            min={0}
-            max={product?.quantity}
-            onChange={onChange}
-            value={quantity}
-            mobile={false}
-          />
-          <Button
-            className={s.button}
-            theme={ThemeButtonEnum.BUY}
-            onClick={onBuy}
-          >
-            Купить
-          </Button>
+          {availableQuantity
+            ? <>
+              <NumericInput
+                className={s.input}
+                min={0}
+                max={product?.quantity}
+                onChange={onChange}
+                value={quantity}
+                mobile={false}
+              />
+              <Button
+                className={s.button}
+                theme={ThemeButtonEnum.BUY}
+                onClick={onBuy}
+              >
+                Купить
+              </Button>
+            </>
+            : <span>Товар закончился</span>
+          }
         </div>
       </div>
       <h2 className={s.title}>{product?.title}</h2>
@@ -71,10 +88,16 @@ const Product: FC = () => {
       </p>
       <p className={s.description}>
         <span className={s.bold}>Категория: </span>
-        {category?.title || 'Без категории'}</p>
+        {category?.title || 'Без категории'}
+      </p>
       <p className={s.description}>
         <span className={s.bold}>Наличие: </span>
-        {product?.quantity}</p>
+        {product?.quantity}
+      </p>
+      {!!availableQuantity && (<p className={s.description}>
+        <span className={s.bold}>Доступно для заказа: </span>
+        {availableQuantity}
+      </p>)}
     </section>
   );
 };

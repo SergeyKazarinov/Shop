@@ -39,7 +39,7 @@ const Header: FC = () => {
   return (
     <header className={s.header}>
       <div className={s.flex}>
-        <h1 className={s.title}>{crumb}</h1>
+        <h1 className={s.title}>{crumb || 'Магазин'}</h1>
         <Order />
       </div>
       <div className={s.breadCrumbs}>
