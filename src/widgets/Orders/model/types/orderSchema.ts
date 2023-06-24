@@ -5,3 +5,8 @@ export interface IOrderSchema {
   totalPrice: number;
   totalQuantity: number;
 }
+
+export interface ISetQuantity {
+  product: IProduct;
+  quantity: number;
+}

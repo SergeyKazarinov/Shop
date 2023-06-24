@@ -5,6 +5,7 @@ import s from './Button.module.scss';
 export enum ThemeButtonEnum {
   BUY = 'buy',
   ORDER = 'order',
+  CLEAR = 'clear',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

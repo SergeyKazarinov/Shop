@@ -1,0 +1,37 @@
+.modal {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  border: 1px solid #000;
+  opacity: 0;
+  background-color: #fff;
+  transition: 1s;
+  z-index: 10;
+}
+
+.opened {
+  opacity: 1;
+}
+
+.overlay {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-color);
+}
+
+@include ipad {
+  .modal {
+    right: -35%;
+  }
+}
+
+@include mobile {
+  .modal {
+    right: -10%;
+    font: var(--font-m)
+  }
+}

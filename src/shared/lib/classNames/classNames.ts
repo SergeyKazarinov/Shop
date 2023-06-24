@@ -4,7 +4,7 @@ export const classNames = (cls: string, mods?: TMods, additional?: string[]): st
   const newAdditional = additional ? additional.filter(Boolean) : [];
   const newMods = mods
     // eslint-disable-next-line
-    ? Object.entries(mods).filter(([key, value]) => Boolean(value)).map(([key, value]) => key)
+    ? Object.entries(mods).filter(([_, value]) => Boolean(value)).map(([key, _]) => key)
     : [];
 
   return [
