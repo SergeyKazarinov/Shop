@@ -1,6 +1,6 @@
 .header {
   border-bottom: 1px solid black;
-  height: 200px;
+  height: 100%;
   padding: 20px 40px;
   box-sizing: border-box;
   display: flex;
@@ -10,7 +10,12 @@
 .flex {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
+}
+
+.breadCrumbs {
+  margin-top: 10px;
 }
 
 @include desktop {

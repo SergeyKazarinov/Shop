@@ -31,20 +31,16 @@
 .input, .button {
   width: 200px;
   height: 60px;
-  border-radius: 15px;
 }
 
-.button {
-  background-color: #02c4ff;
-  color: #fff;
+.input {
+  touch-action: none;
 }
 
 .subtitle {
   margin: 0;
   margin-bottom: 5px;
 }
-
-
 
 .description {
   margin: 0;

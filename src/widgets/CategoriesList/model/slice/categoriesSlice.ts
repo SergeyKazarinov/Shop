@@ -8,7 +8,7 @@ const initialState: ICategoriesSchema = {
   error: '',
 };
 
-const categoriesSchema = createSlice({
+const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
@@ -29,6 +29,6 @@ const categoriesSchema = createSlice({
   },
 });
 
-export const categoriesActions = categoriesSchema.actions;
+export const categoriesActions = categoriesSlice.actions;
 
-export const categoriesReducer = categoriesSchema.reducer;
+export const categoriesReducer = categoriesSlice.reducer;

@@ -1,10 +1,12 @@
 import image from 'images/item.jpg';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import getProductById from 'widgets/ProductList/model/services/getProductById';
+import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
+import { orderActions } from 'widgets/Orders';
 import s from './Product.module.scss';
 
 type TParams = {
@@ -17,6 +19,7 @@ const Product: FC = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector((store) => store.product.product);
   const categories = useAppSelector((store) => store.categories.categories);
+  const [quantity, setQuantity] = useState(0);
 
   const category = categories.find((item) => item.id === Number(categoryId));
 
@@ -26,6 +29,16 @@ const Product: FC = () => {
     }
   }, []);
 
+  const onChange = (e: number) => {
+    setQuantity(e);
+  };
+
+  const onBuy = () => {
+    if (product) {
+      dispatch(orderActions.addProduct({ product, quantity }));
+    }
+  };
+
   return (
     <section className={s.container}>
       <div className={s.flex}>
@@ -33,8 +46,21 @@ const Product: FC = () => {
           <img src={image} className={s.image} alt='Изображение товара' />
         </div>
         <div className={s.flexColumn}>
-          <NumericInput className={s.input} min={0} max={product?.quantity} />
-          <button type='button' className={s.button}>Купить</button>
+          <NumericInput
+            className={s.input}
+            min={0}
+            max={product?.quantity}
+            onChange={onChange}
+            value={quantity}
+            mobile={false}
+          />
+          <Button
+            className={s.button}
+            theme={ThemeButtonEnum.BUY}
+            onClick={onBuy}
+          >
+            Купить
+          </Button>
         </div>
       </div>
       <h2 className={s.title}>{product?.title}</h2>

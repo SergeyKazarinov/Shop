@@ -1,0 +1,20 @@
+.container {
+  width: 240px;
+  height: 80px;
+}
+
+.button {
+  position: relative;
+}
+
+.price {
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+}
+
+.quantity {
+  position: absolute;
+  bottom: 0;
+  right: 1em;
+}

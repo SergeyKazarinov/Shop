@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getPathArrayFromLocation } from 'shared/lib/helpers/getPathArrayFromLocation';
+import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts/getPathArrayFromLocation';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+import { Order } from 'widgets/Orders';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
@@ -39,6 +40,7 @@ const Header: FC = () => {
     <header className={s.header}>
       <div className={s.flex}>
         <h1 className={s.title}>{crumb}</h1>
+        <Order />
       </div>
       <div className={s.breadCrumbs}>
         {crumb && breadcrumbs}
