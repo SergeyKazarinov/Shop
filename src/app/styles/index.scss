@@ -1,0 +1,21 @@
+@import './normalize.scss';
+@import './variables/global.scss';
+
+
+body {
+  font: var(--font-l);
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.app {
+  min-height: 100vh;
+}
+
+.content-page {
+  display: flex;
+}
+
+.page-wrapper {
+  padding: 20px;
+}
