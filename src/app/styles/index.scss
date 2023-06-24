@@ -19,3 +19,9 @@ body {
 .page-wrapper {
   padding: 20px;
 }
+
+@include mobile {
+  .page-wrapper {
+    padding: 5px;
+  }
+}

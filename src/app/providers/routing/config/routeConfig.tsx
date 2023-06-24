@@ -1,5 +1,5 @@
+import { CategoriesListPageLazy } from 'pages/CategoiesListPage';
 import { RouteProps } from 'react-router-dom';
-import Loader from 'shared/ui/Loader/Loader';
 
 export enum AppRoutesEnum {
   CATEGORY = 'category',
@@ -12,6 +12,6 @@ export const RoutePath: Record<AppRoutesEnum, string> = {
 export const routeConfig: Record<AppRoutesEnum, RouteProps> = {
   [AppRoutesEnum.CATEGORY]: {
     path: RoutePath.category,
-    element: <Loader />,
+    element: <CategoriesListPageLazy />,
   },
 };
