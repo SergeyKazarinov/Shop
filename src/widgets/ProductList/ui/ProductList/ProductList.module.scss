@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+@include desktop {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include ipad {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@include mobile {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
