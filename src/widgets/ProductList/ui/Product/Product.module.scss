@@ -1,0 +1,81 @@
+.container {
+  padding: 20px;
+  border: 1px solid black;
+  margin: 20px
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imageWrapper {
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.flexColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.input, .button {
+  width: 200px;
+  height: 60px;
+  border-radius: 15px;
+}
+
+.button {
+  background-color: #02c4ff;
+  color: #fff;
+}
+
+.subtitle {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+
+
+.description {
+  margin: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@include desktop {
+  .input, .button {
+    width: 150px;
+    height: 30px;
+    font: var(--font-m);
+  }
+}
+
+@include ipad {
+  .container {
+    font: var(--font-m);
+  }
+
+  .input, .button {
+    width: 100px;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+  
+  .flexColumn {
+    flex-direction: row;
+  }
+}
