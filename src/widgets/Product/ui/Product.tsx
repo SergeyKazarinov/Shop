@@ -20,6 +20,7 @@ const Product: FC = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector((store) => store.product.product);
   const errorMessage = useAppSelector((store) => store.product.error);
+  const isLoading = useAppSelector((store) => store.product.isLoading);
   const categories = useAppSelector((store) => store.categories.categories);
   const orders = useAppSelector((store) => store.order.orders);
   const [quantity, setQuantity] = useState(0);
@@ -59,11 +60,11 @@ const Product: FC = () => {
     }
   };
 
-  if (errorMessage) {
+  if (errorMessage && !isLoading) {
     return <ErrorMessage title='Error' subtitle={errorMessage} />;
   }
 
-  if (!product || !hasCategory) {
+  if (!isLoading && (!product || !hasCategory)) {
     return <ErrorMessage title='404' subtitle='Такого товара нет' />;
   }
 
@@ -89,7 +90,7 @@ const Product: FC = () => {
                 className={s.button}
                 theme={ThemeButtonEnum.BUY}
                 onClick={onBuy}
-                disabled={!quantity || (quantity > product.quantity)}
+                disabled={!quantity || (quantity > product!.quantity)}
               >
                 Купить
               </Button>

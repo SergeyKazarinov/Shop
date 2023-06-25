@@ -11,6 +11,7 @@ interface CategoriesListProps {
 const CategoriesList: FC<CategoriesListProps> = () => {
   const categories = useAppSelector((store) => store.categories.categories);
   const errorMessage = useAppSelector((store) => store.categories.error);
+  const isLoading = useAppSelector((store) => store.categories.isLoading);
 
   const categoriesList = categories.map((item) => (
     <Card
@@ -21,7 +22,7 @@ const CategoriesList: FC<CategoriesListProps> = () => {
     />
   ));
 
-  if (errorMessage) {
+  if (errorMessage && !isLoading) {
     return <ErrorMessage title='Error' subtitle={errorMessage} />;
   }
 

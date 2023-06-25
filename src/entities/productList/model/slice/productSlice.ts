@@ -8,6 +8,7 @@ const initialState: IProductSchema = {
   products: [],
   product: null,
   error: '',
+  isLoading: false,
 };
 
 const productSlice = createSlice({
@@ -23,22 +24,28 @@ const productSlice = createSlice({
     builder
       .addCase(getProducts.pending, (state) => {
         state.error = '';
+        state.isLoading = true;
       })
       .addCase(getProducts.fulfilled, (state, action: PayloadAction<IProduct[]>) => {
         state.products = action.payload;
+        state.isLoading = false;
       })
       .addCase(getProducts.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.error = action.payload;
+        state.isLoading = false;
       })
 
       .addCase(getProductById.pending, (state) => {
         state.error = '';
+        state.isLoading = true;
       })
       .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProduct>) => {
         state.product = action.payload;
+        state.isLoading = false;
       })
       .addCase(getProductById.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.error = action.payload;
+        state.isLoading = false;
       });
   },
 });

@@ -20,7 +20,7 @@ const getProductById = createAsyncThunk<IProduct, TGetProductByIdProps, IThunkCo
       const productRes = response.data.find((item) => item.id === Number(productId));
 
       if (!productRes) {
-        throw new Error();
+        throw new Error('Такого товара нет');
       }
 
       return productRes;

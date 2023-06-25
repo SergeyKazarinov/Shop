@@ -6,6 +6,7 @@ import getCategories from '../services/getCategories';
 const initialState: ICategoriesSchema = {
   categories: [],
   error: '',
+  isLoading: false,
 };
 
 const categoriesSlice = createSlice({
@@ -21,12 +22,15 @@ const categoriesSlice = createSlice({
     builder
       .addCase(getCategories.pending, (state) => {
         state.error = '';
+        state.isLoading = true;
       })
       .addCase(getCategories.fulfilled, (state, action: PayloadAction<ICategory[]>) => {
         state.categories = action.payload;
+        state.isLoading = false;
       })
       .addCase(getCategories.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.error = action.payload;
+        state.isLoading = false;
       });
   },
 });

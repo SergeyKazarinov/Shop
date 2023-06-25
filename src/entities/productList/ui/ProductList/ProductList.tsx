@@ -15,6 +15,7 @@ const ProductList: FC = () => {
   const { categoryId } = useParams<TParams>();
   const products = useAppSelector((store) => store.product.products);
   const errorMessage = useAppSelector((store) => store.product.error);
+  const isLoading = useAppSelector((store) => store.product.isLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const ProductList: FC = () => {
     return <ErrorMessage title="Error" subtitle={errorMessage} />;
   }
 
-  if (products.length === 0) {
+  if (products.length === 0 && !isLoading) {
     return <ErrorMessage title='404' subtitle='Такой категории нет' />;
   }
 
