@@ -12,6 +12,7 @@ interface ModalProps {
   lazy?: boolean;
   modalPortal?: HTMLElement;
   className?: string;
+  disabled?: boolean;
 }
 
 const Modal: FC<ModalProps> = ({
@@ -21,6 +22,7 @@ const Modal: FC<ModalProps> = ({
   lazy,
   modalPortal,
   className = '',
+  disabled = false,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
@@ -28,14 +30,14 @@ const Modal: FC<ModalProps> = ({
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const handleClose = useCallback(() => {
-    if (onClose) {
+    if (onClose && !disabled) {
       setIsClosing(true);
       timerRef.current = setTimeout(() => {
         onClose();
         setIsClosing(false);
       }, 500);
     }
-  }, [onClose]);
+  }, [onClose, disabled]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
