@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ORDER } from 'shared/consts/localStorage';
 import { IProduct } from 'shared/types/IProduct';
-import { getTotalPrice } from 'widgets/Orders/lib/getTotalPrice/getTotalPrice';
-import { getTotalQuantity } from 'widgets/Orders/lib/getTotalQuantity/getTotalQuantity';
+import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
+import { getTotalQuantity } from '../../lib/getTotalQuantity/getTotalQuantity';
 import { IOrderSchema, ISetQuantity } from '../types/orderSchema';
 
 const initialState: IOrderSchema = {

@@ -3,8 +3,8 @@ import { FC, useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { IProduct } from 'shared/types/IProduct';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { orderActions } from 'widgets/Orders';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { orderActions } from '../../model/slice/orderSlice';
 import s from './OrderItem.module.scss';
 
 interface OrderItemProps {

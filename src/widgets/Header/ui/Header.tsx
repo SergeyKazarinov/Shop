@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts/getPathArrayFromLocation';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { BuyModal, OrderModal } from 'widgets/Orders';
+import { BuyModal, OrderModal } from 'features/Orders';
 import s from './Header.module.scss';
 
 const Header: FC = () => {

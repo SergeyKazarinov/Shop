@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { $api } from 'shared/api/api';
 import { categoriesReducer } from 'widgets/CategoriesList';
-import { orderReducer } from 'widgets/Orders';
+import { orderReducer } from 'features/Orders';
 import { productReducer } from 'widgets/ProductList';
 
 const rootReducer = combineReducers({
