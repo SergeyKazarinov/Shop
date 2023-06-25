@@ -1,3 +1,3 @@
 export { orderActions, orderReducer } from './model/slice/orderSlice';
 
-export { default as Order } from './ui/Order/Order';
+export { default as OrderModal } from './ui/OrderModal/OrderModal';

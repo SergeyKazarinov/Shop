@@ -12,10 +12,29 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  position: relative;
 }
 
 .breadCrumbs {
   margin-top: 10px;
+}
+
+.button {
+  width: 240px;
+  height: 80px;
+  position: relative;
+}
+
+.price {
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+}
+
+.quantity {
+  position: absolute;
+  bottom: 0;
+  right: 1em;
 }
 
 @include desktop {

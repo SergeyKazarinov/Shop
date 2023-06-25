@@ -1,8 +1,11 @@
 import {
   FC,
-  useCallback, useEffect, useState,
+  Suspense,
+  useCallback,
+  useEffect,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import Loader from 'shared/ui/Loader/Loader';
 import Portal from 'shared/ui/Portal/Portal';
 import { OrderFormLazy } from '../OrderForm/OrderForm.lazy';
 import s from './OrderModal.module.scss';
@@ -20,15 +23,6 @@ const OrderModal: FC<OrderModalProps> = ({
   const mods: Record<string, boolean> = {
     [s.opened]: isOpen,
   };
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsMounted(true);
-    } else {
-      setIsMounted(false);
-    }
-  }, [isOpen]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -52,14 +46,12 @@ const OrderModal: FC<OrderModalProps> = ({
     onClose();
   };
 
-  if (!isMounted) {
-    return null;
-  }
-
   return (
     <Portal element={modalPortal}>
       <div className={(classNames(s.modal, mods, [className]))} >
-        <OrderFormLazy />
+        <Suspense fallback={<Loader />}>
+          <OrderFormLazy />
+        </Suspense>
       </div>
       <div className={s.overlay} onClick={onClick} />
     </Portal>

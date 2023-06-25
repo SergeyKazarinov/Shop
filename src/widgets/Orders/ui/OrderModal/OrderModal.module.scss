@@ -1,6 +1,6 @@
 .modal {
   position: absolute;
-  top: 80px;
+  top: 90px;
   right: 0;
   border: 1px solid #000;
   opacity: 0;
@@ -25,13 +25,16 @@
 
 @include ipad {
   .modal {
-    right: -35%;
+    right: 30px;
+    left: 30px;
+    top: 180px;
   }
 }
 
 @include mobile {
   .modal {
-    right: -10%;
+    right: 0;
+    left: 0;
     font: var(--font-m)
   }
 }

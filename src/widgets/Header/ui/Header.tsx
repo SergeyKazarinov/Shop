@@ -1,15 +1,23 @@
-import { FC } from 'react';
+import { FC, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts/getPathArrayFromLocation';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import { Order } from 'widgets/Orders';
+import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
+import { OrderModal } from 'widgets/Orders';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
   const { pathname } = useLocation();
+  const pathArray = getPathArrayFromLocation(pathname);
   const categories = useAppSelector((store) => store.categories.categories);
   const product = useAppSelector((store) => store.product.product);
-  const pathArray = getPathArrayFromLocation(pathname);
+  const totalQuantity = useAppSelector((store) => store.order.totalQuantity);
+  const totalPrice = useAppSelector((store) => store.order.totalPrice);
+  const [isOpenOrderModal, setIsOpenOrderModal] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpenOrderModal((state) => !state);
+  };
 
   let crumb: string | undefined;
 
@@ -36,11 +44,27 @@ const Header: FC = () => {
       );
   });
 
+  const modalPortal = document.getElementById('basket') || document.body;
   return (
     <header className={s.header}>
-      <div className={s.flex}>
+      <div className={s.flex} id='basket'>
         <h1 className={s.title}>{crumb || 'Магазин'}</h1>
-        <Order />
+        <Button
+          className={s.button}
+          theme={ThemeButtonEnum.ORDER}
+          onClick={toggleModal}
+        >
+
+          Корзина
+
+          {totalPrice > 0 && <span className={s.price}>{totalPrice}</span>}
+          {totalQuantity > 0 && <span className={s.quantity}>{totalQuantity}</span>}
+        </Button>
+        {isOpenOrderModal && <OrderModal
+          isOpen={isOpenOrderModal}
+          onClose={toggleModal}
+          modalPortal={modalPortal}
+        />}
       </div>
       <div className={s.breadCrumbs}>
         {crumb && breadcrumbs}
@@ -49,4 +73,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
