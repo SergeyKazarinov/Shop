@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts/getPathArrayFromLocation';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { OrderModal } from 'widgets/Orders';
+import { BuyModal, OrderModal } from 'widgets/Orders';
+import { IProduct } from 'shared/types/IProduct';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
@@ -14,6 +15,7 @@ const Header: FC = () => {
   const totalQuantity = useAppSelector((store) => store.order.totalQuantity);
   const totalPrice = useAppSelector((store) => store.order.totalPrice);
   const [isOpenOrderModal, setIsOpenOrderModal] = useState(false);
+  const [isOpenBuyModal, setIsOpenBuyModal] = useState(false);
 
   const toggleModal = () => {
     setIsOpenOrderModal((state) => !state);
@@ -44,6 +46,16 @@ const Header: FC = () => {
       );
   });
 
+  const handleBuy = (orders: IProduct[]) => {
+    setIsOpenOrderModal(false);
+    setIsOpenBuyModal(true);
+    console.log(orders);
+  };
+
+  const handleCloseBuyModal = () => {
+    setIsOpenBuyModal(false);
+  };
+
   const modalPortal = document.getElementById('basket') || document.body;
   return (
     <header className={s.header}>
@@ -64,7 +76,9 @@ const Header: FC = () => {
           isOpen={isOpenOrderModal}
           onClose={toggleModal}
           modalPortal={modalPortal}
+          onBuy={handleBuy}
         />}
+        {isOpenBuyModal && <BuyModal isOpen={isOpenBuyModal} onClose={handleCloseBuyModal} />}
       </div>
       <div className={s.breadCrumbs}>
         {crumb && breadcrumbs}

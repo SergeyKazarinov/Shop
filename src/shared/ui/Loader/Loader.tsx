@@ -1,8 +1,12 @@
 import { FC } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import s from './Loader.module.scss';
 
-const Loader: FC = () => (
-  <div className={s.container}>
+interface LoaderProps {
+  className?: string;
+}
+const Loader: FC<LoaderProps> = ({ className = s.fixed }) => (
+  <div className={classNames(s.container, {}, [className])}>
     <div className={s.loader}></div>
   </div>
 );
