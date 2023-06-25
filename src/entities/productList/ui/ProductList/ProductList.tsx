@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Card from 'shared/ui/Card/Card';
-import NotFound from 'shared/ui/NotFound/NotFound';
+import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 import getProducts from '../../model/services/getProducts';
 import s from './ProductList.module.scss';
 
@@ -14,6 +14,7 @@ type TParams = {
 const ProductList: FC = () => {
   const { categoryId } = useParams<TParams>();
   const products = useAppSelector((store) => store.product.products);
+  const errorMessage = useAppSelector((store) => store.product.error);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -31,8 +32,12 @@ const ProductList: FC = () => {
     />
   ));
 
+  if (errorMessage) {
+    return <ErrorMessage title="Error" subtitle={errorMessage} />;
+  }
+
   if (products.length === 0) {
-    return <NotFound title='404' subtitle='Такой категории нет' />;
+    return <ErrorMessage title='404' subtitle='Такой категории нет' />;
   }
 
   return (

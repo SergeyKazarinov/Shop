@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { IOrder } from 'features/orders/model/types/orderSchema';
 import { IProduct } from 'shared/types/IProduct';
 
@@ -27,7 +27,8 @@ const patchProduct = createAsyncThunk<undefined, TPatchProductProps, IThunkConfi
       });
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue('Error');
+      const error = e as AxiosError;
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );

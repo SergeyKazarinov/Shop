@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import NotFound from 'shared/ui/NotFound/NotFound';
+import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 import s from './Product.module.scss';
 
 type TParams = {
@@ -19,6 +19,7 @@ const Product: FC = () => {
   const { categoryId, productId } = useParams<TParams>();
   const dispatch = useAppDispatch();
   const product = useAppSelector((store) => store.product.product);
+  const errorMessage = useAppSelector((store) => store.product.error);
   const categories = useAppSelector((store) => store.categories.categories);
   const orders = useAppSelector((store) => store.order.orders);
   const [quantity, setQuantity] = useState(0);
@@ -58,8 +59,12 @@ const Product: FC = () => {
     }
   };
 
+  if (errorMessage) {
+    return <ErrorMessage title='Error' subtitle={errorMessage} />;
+  }
+
   if (!product || !hasCategory) {
-    return <NotFound title='404' subtitle='Такого товара нет' />;
+    return <ErrorMessage title='404' subtitle='Такого товара нет' />;
   }
 
   return (

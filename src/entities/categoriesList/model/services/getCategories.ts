@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
+import { AxiosError } from 'axios';
 import { ICategory } from 'shared/types/ICategory';
 
 const getCategories = createAsyncThunk<ICategory[], undefined, IThunkConfig<string>>(
@@ -14,7 +15,8 @@ const getCategories = createAsyncThunk<ICategory[], undefined, IThunkConfig<stri
       return response.data;
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue('Error');
+      const error = e as AxiosError;
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );

@@ -1,5 +1,5 @@
 import React, { ErrorInfo, ReactNode, Suspense } from 'react';
-import NotFound from 'shared/ui/NotFound/NotFound';
+import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 
 interface IErrorBoundaryProps {
   children: ReactNode;
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryS
     if (hasError) {
       return (
         <Suspense fallback="">
-          <NotFound title='Произошла ошибка' subtitle='Попробуйте обновить страницу' />
+          <ErrorMessage title='Произошла ошибка' subtitle='Попробуйте обновить страницу' />
         </Suspense>
       );
     }

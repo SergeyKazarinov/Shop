@@ -12,7 +12,9 @@ const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-
+    clearErrorMessage: (state) => {
+      state.error = '';
+    },
   },
 
   extraReducers: (builder) => {

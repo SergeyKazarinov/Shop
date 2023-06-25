@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { IProduct } from 'shared/types/IProduct';
 
 type TGetProductByIdProps = {
@@ -26,7 +26,8 @@ const getProductById = createAsyncThunk<IProduct, TGetProductByIdProps, IThunkCo
       return productRes;
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue('Error');
+      const error = e as AxiosError;
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Card from 'shared/ui/Card/Card';
+import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 import s from './CategoriesList.module.scss';
 
 interface CategoriesListProps {
@@ -9,6 +10,7 @@ interface CategoriesListProps {
 
 const CategoriesList: FC<CategoriesListProps> = () => {
   const categories = useAppSelector((store) => store.categories.categories);
+  const errorMessage = useAppSelector((store) => store.categories.error);
 
   const categoriesList = categories.map((item) => (
     <Card
@@ -18,6 +20,10 @@ const CategoriesList: FC<CategoriesListProps> = () => {
       pathname={`/${item.id}`}
     />
   ));
+
+  if (errorMessage) {
+    return <ErrorMessage title='Error' subtitle={errorMessage} />;
+  }
 
   return (
     <div className={s.container}>
