@@ -36,9 +36,9 @@ const ProductList: FC = () => {
   }
 
   return (
-    <section className={s.container}>
+    <div className={s.container}>
       {productsList}
-    </section>
+    </div>
   );
 };
 

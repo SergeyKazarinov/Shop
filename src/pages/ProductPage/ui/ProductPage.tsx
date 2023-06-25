@@ -1,8 +1,15 @@
 import { FC } from 'react';
 import { Product } from 'widgets/Product';
+import { motion } from 'framer-motion';
 
 const ProductPage: FC = () => (
-  <Product />
+  <motion.section
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, transition: { duration: 0.7 } }}
+    exit={{ opacity: 0 }}
+  >
+    <Product />
+  </motion.section>
 );
 
 export default ProductPage;

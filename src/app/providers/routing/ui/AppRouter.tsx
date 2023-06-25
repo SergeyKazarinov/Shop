@@ -1,11 +1,12 @@
 import Layout from 'app/Layout/Layout';
 import { PageNotFound } from 'pages/PageNotFound';
 import { FC, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Loader from 'shared/ui/Loader/Loader';
 import { routeConfig } from '../config/routeConfig';
 
 const AppRouter: FC = () => {
+  const location = useLocation();
   const routes = Object
     .values(routeConfig)
     .map(({ element, path }) => (
@@ -18,13 +19,13 @@ const AppRouter: FC = () => {
 
   return (
     <Suspense fallback={<Loader fixed />}>
-      <Routes>
+      <Routes location={location} key={location.pathname}>
         <Route element={<Layout />}>
           {routes}
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </Suspense>
+    </Suspense >
   );
 };
 

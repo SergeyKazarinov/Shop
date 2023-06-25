@@ -1,4 +1,5 @@
 import App from 'app/App';
+import { AnimateProvider } from 'app/providers/AnimateProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { StoreProvider } from 'app/providers/StoreProvider';
 import React from 'react';
@@ -12,9 +13,11 @@ root.render(
   <StoreProvider>
     <BrowserRouter>
       <ErrorBoundary>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <AnimateProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </AnimateProvider>
       </ErrorBoundary>
     </BrowserRouter>
   </StoreProvider>,

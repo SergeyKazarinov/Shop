@@ -20,9 +20,9 @@ const CategoriesList: FC<CategoriesListProps> = () => {
   ));
 
   return (
-    <section className={s.container}>
+    <div className={s.container}>
       {categoriesList}
-    </section>
+    </div>
   );
 };
 

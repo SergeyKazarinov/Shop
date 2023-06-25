@@ -63,7 +63,7 @@ const Product: FC = () => {
   }
 
   return (
-    <section className={s.container}>
+    <div className={s.container}>
       <div className={s.flex}>
         <div className={s.imageWrapper}>
           <img src={image} className={s.image} alt='Изображение товара' />
@@ -111,7 +111,7 @@ const Product: FC = () => {
         <span className={s.bold}>Доступно для заказа: </span>
         {availableQuantity}
       </p>)}
-    </section>
+    </div>
   );
 };
 
