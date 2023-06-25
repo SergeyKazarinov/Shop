@@ -1,12 +1,12 @@
+import { getProductById } from 'entities/productList';
+import { orderActions } from 'features/orders';
 import image from 'images/item.jpg';
 import { FC, useEffect, useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import getProductById from 'widgets/ProductList/model/services/getProductById';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { orderActions } from 'features/orders';
 import s from './Product.module.scss';
 
 type TParams = {

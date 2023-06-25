@@ -1,15 +1,15 @@
+import { patchProduct } from 'entities/productList';
 import image from 'images/closeBtn.svg';
 import { FC, useState } from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import Modal from 'shared/ui/Modal/Modal';
 import Portal from 'shared/ui/Portal/Portal';
 import ProcessBar from 'shared/ui/ProcessBar/ProcessBar';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import patchProduct from 'widgets/ProductList/model/services/patchProduct';
 import { orderActions } from '../../model/slice/orderSlice';
-import s from './BuyModal.module.scss';
 import BuyList from '../BuyList/BuyList';
+import s from './BuyModal.module.scss';
 
 interface BuyModalProps {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ProductList } from 'widgets/ProductList';
+import { ProductList } from 'entities/productList';
 
 const ProductListPage: FC = () => (
   <ProductList />
