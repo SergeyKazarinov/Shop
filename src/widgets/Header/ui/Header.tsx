@@ -1,9 +1,9 @@
+import { BuyModal, OrderModal } from 'features/orders';
 import { FC, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts/getPathArrayFromLocation';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { BuyModal, OrderModal } from 'features/Orders';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
@@ -21,12 +21,17 @@ const Header: FC = () => {
   };
 
   let crumb: string | undefined;
+  let isCategory = false;
 
   const breadcrumbs = pathArray.map((item, index) => {
     const routeTo = `/${pathArray.slice(0, index + 1).join('/')}`;
 
     if (index === 0) {
-      crumb = categories.find((el) => el.id === Number(item))?.title;
+      const hasCategory = categories.find((el) => el.id === Number(item));
+      if (hasCategory) {
+        crumb = hasCategory.title;
+        isCategory = true;
+      }
     }
 
     if (index === 1) {
@@ -79,7 +84,7 @@ const Header: FC = () => {
         {isOpenBuyModal && <BuyModal isOpen={isOpenBuyModal} onClose={handleCloseBuyModal} />}
       </div>
       <div className={s.breadCrumbs}>
-        {crumb && breadcrumbs}
+        {crumb && isCategory && breadcrumbs}
       </div>
     </header>
   );

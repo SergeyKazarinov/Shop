@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
+import NotFound from 'shared/ui/NotFound/NotFound';
 import s from './Product.module.scss';
 
 type TParams = {
@@ -15,7 +16,7 @@ type TParams = {
 };
 
 const Product: FC = () => {
-  const { productId, categoryId } = useParams<TParams>();
+  const { categoryId, productId } = useParams<TParams>();
   const dispatch = useAppDispatch();
   const product = useAppSelector((store) => store.product.product);
   const categories = useAppSelector((store) => store.categories.categories);
@@ -23,9 +24,11 @@ const Product: FC = () => {
   const [quantity, setQuantity] = useState(0);
   const [availableQuantity, setAvailableQuantity] = useState(product?.quantity);
 
+  const hasCategory = categories.find((item) => item.id === Number(categoryId));
+
   useEffect(() => {
-    if (productId) {
-      dispatch(getProductById(productId));
+    if (productId && categoryId) {
+      dispatch(getProductById({ productId, categoryId }));
     }
   }, []);
 
@@ -55,6 +58,10 @@ const Product: FC = () => {
     }
   };
 
+  if (!product || !hasCategory) {
+    return <NotFound title='404' subtitle='Такого товара нет' />;
+  }
+
   return (
     <section className={s.container}>
       <div className={s.flex}>
@@ -77,7 +84,7 @@ const Product: FC = () => {
                 className={s.button}
                 theme={ThemeButtonEnum.BUY}
                 onClick={onBuy}
-                disabled={!quantity || (quantity > product!.quantity)}
+                disabled={!quantity || (quantity > product.quantity)}
               >
                 Купить
               </Button>

@@ -9,6 +9,12 @@
   --font-size-xl: 32px;
   --font-line-xl: 40px;
   --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+  --font-size-2xl: 40px;
+  --font-line-2xl: 48px;
+  --font-2xl: var(--font-size-2xl) / var(--font-line-2xl) var(--font-family-main);
+  --font-size-3xl: 48px;
+  --font-line-3xl: 56px;
+  --font-3xl: var(--font-size-3xl) / var(--font-line-3xl) var(--font-family-main);
 
   // colors
   --overlay-color: #00000060;

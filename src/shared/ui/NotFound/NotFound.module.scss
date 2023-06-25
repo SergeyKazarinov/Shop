@@ -1,0 +1,16 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font: var(--font-3xl)
+}
+
+.link {
+  color: blue;
+}
+
+.large {
+  font-size: 140px;
+}

@@ -1,3 +1,5 @@
+import Layout from 'app/Layout/Layout';
+import { PageNotFound } from 'pages/PageNotFound';
 import { FC, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Loader from 'shared/ui/Loader/Loader';
@@ -17,7 +19,10 @@ const AppRouter: FC = () => {
   return (
     <Suspense fallback={<Loader fixed />}>
       <Routes>
-        {routes}
+        <Route element={<Layout />}>
+          {routes}
+        </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

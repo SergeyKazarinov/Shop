@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Card from 'shared/ui/Card/Card';
+import NotFound from 'shared/ui/NotFound/NotFound';
 import getProducts from '../../model/services/getProducts';
 import s from './ProductList.module.scss';
 
@@ -29,6 +30,10 @@ const ProductList: FC = () => {
       pathname={`/${categoryId}/${item.id}`}
     />
   ));
+
+  if (products.length === 0) {
+    return <NotFound title='404' subtitle='Такой категории нет' />;
+  }
 
   return (
     <section className={s.container}>
