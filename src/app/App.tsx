@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import getCategories from 'widgets/CategoriesList/model/services/getCategories';
+import getCategories from 'entities/categoriesList/model/services/getCategories';
 import { Header } from 'widgets/Header';
-import { orderActions } from 'features/Orders';
+import { orderActions } from 'features/orders';
 import { AppRouter } from './providers/routing';
 import './styles/index.scss';
 

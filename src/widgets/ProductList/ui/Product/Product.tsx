@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import getProductById from 'widgets/ProductList/model/services/getProductById';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { orderActions } from 'features/Orders';
+import { orderActions } from 'features/orders';
 import s from './Product.module.scss';
 
 type TParams = {
