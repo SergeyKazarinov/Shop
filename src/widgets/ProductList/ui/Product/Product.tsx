@@ -48,6 +48,7 @@ const Product: FC = () => {
   const onBuy = () => {
     if (product) {
       dispatch(orderActions.addProduct({ ...product, quantity }));
+      setQuantity(0);
     }
   };
 
@@ -72,6 +73,7 @@ const Product: FC = () => {
                 className={s.button}
                 theme={ThemeButtonEnum.BUY}
                 onClick={onBuy}
+                disabled={!quantity}
               >
                 Купить
               </Button>

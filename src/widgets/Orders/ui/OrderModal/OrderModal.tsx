@@ -9,7 +9,6 @@ import {
 import { classNames } from 'shared/lib/classNames/classNames';
 import Loader from 'shared/ui/Loader/Loader';
 import Portal from 'shared/ui/Portal/Portal';
-import { IProduct } from 'shared/types/IProduct';
 import { OrderFormLazy } from '../OrderForm/OrderForm.lazy';
 import s from './OrderModal.module.scss';
 
@@ -18,7 +17,7 @@ interface OrderModalProps {
   isOpen: boolean;
   onClose?: () => void;
   modalPortal?: HTMLElement;
-  onBuy: (orders: IProduct[]) => void;
+  onBuy: () => void;
 }
 
 const OrderModal: FC<OrderModalProps> = ({
@@ -70,7 +69,7 @@ const OrderModal: FC<OrderModalProps> = ({
   return (
     <Portal element={modalPortal}>
       <div className={(classNames(s.modal, mods, [className]))} >
-        <Suspense fallback={<Loader className='' />}>
+        <Suspense fallback={<Loader />}>
           <OrderFormLazy onBuy={onBuy} />
         </Suspense>
       </div>

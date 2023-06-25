@@ -15,7 +15,7 @@ const AppRouter: FC = () => {
     ));
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader fixed />}>
       <Routes>
         {routes}
       </Routes>

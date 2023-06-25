@@ -32,7 +32,7 @@ const ProcessBar: FC<ProcessBarProps> = ({ onSuccess }) => {
   }, [percent, onSuccess]);
   return (
     <>
-      <Loader className='' />
+      <Loader />
       <p>Процесс оплаты {percent} %</p>
       <Line percent={percent} strokeWidth={2} strokeColor="#2db7f5" />
     </>

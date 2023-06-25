@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import { IProduct } from 'shared/types/IProduct';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import OrderItem from '../OrderItem/OrderItem';
 import s from './OrderForm.module.scss';
 
 interface OrderFromProps {
-  onBuy: (orders: IProduct[]) => void;
+  onBuy: () => void;
 }
 
 const OrderForm: FC<OrderFromProps> = ({ onBuy }) => {
@@ -16,9 +15,11 @@ const OrderForm: FC<OrderFromProps> = ({ onBuy }) => {
 
   const orderList = orders.map((item) => <OrderItem product={item} key={item.id} />);
 
-  const handleBuy = () => {
-    onBuy(orders);
-  };
+  if (orders.length === 0) {
+    return (<div className={s.container}>
+      <div className={s.text}>Товаров нет в корзине</div>
+    </div>);
+  }
 
   return (
     <div className={s.container}>
@@ -29,7 +30,7 @@ const OrderForm: FC<OrderFromProps> = ({ onBuy }) => {
 
         {totalPrice > 0 && <span>{`Цена: ${totalPrice}`}</span>}
         {totalQuantity > 0 && <span>{`Кол-во: ${totalQuantity}`}</span>}
-        <Button theme={ThemeButtonEnum.BUY} onClick={handleBuy}>Оплатить</Button>
+        <Button theme={ThemeButtonEnum.BUY} onClick={onBuy}>Оплатить</Button>
       </div>
     </div>
   );

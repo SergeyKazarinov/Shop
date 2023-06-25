@@ -69,6 +69,13 @@ const orderSlice = createSlice({
       state.totalQuantity = getTotalQuantity(state.orders);
       localStorage.setItem(ORDER, JSON.stringify(state));
     },
+    removeOrder: (state) => {
+      state.orders = [];
+      state.totalPrice = 0;
+      state.totalQuantity = 0;
+
+      localStorage.removeItem(ORDER);
+    },
   },
 });
 

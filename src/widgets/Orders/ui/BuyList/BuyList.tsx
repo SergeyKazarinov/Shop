@@ -10,7 +10,7 @@ const BuyList: FC<BuyListProps> = () => {
   const orders = useAppSelector((store) => store.order.orders);
 
   const orderList = orders.map((item) => (
-    <div className={s.flex}>
+    <div key={item.id} className={s.flex}>
       <div>
         <span>{item.title} </span>
         <span>({item.quantity})</span>

@@ -14,6 +14,13 @@
   justify-content: space-between;
 }
 
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 @include desktop {
   .container {
     min-width: 300px;

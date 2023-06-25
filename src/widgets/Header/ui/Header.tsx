@@ -4,7 +4,6 @@ import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import { BuyModal, OrderModal } from 'widgets/Orders';
-import { IProduct } from 'shared/types/IProduct';
 import s from './Header.module.scss';
 
 const Header: FC = () => {
@@ -46,10 +45,9 @@ const Header: FC = () => {
       );
   });
 
-  const handleBuy = (orders: IProduct[]) => {
+  const handleBuy = () => {
     setIsOpenOrderModal(false);
     setIsOpenBuyModal(true);
-    console.log(orders);
   };
 
   const handleCloseBuyModal = () => {

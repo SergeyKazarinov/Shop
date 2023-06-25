@@ -4,6 +4,10 @@ import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import Modal from 'shared/ui/Modal/Modal';
 import Portal from 'shared/ui/Portal/Portal';
 import ProcessBar from 'shared/ui/ProcessBar/ProcessBar';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { orderActions } from 'widgets/Orders';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+import patchProduct from 'widgets/ProductList/model/services/patchProduct';
 import s from './BuyModal.module.scss';
 import BuyList from '../BuyList/BuyList';
 
@@ -14,6 +18,8 @@ interface BuyModalProps {
 }
 
 const BuyModal: FC<BuyModalProps> = ({ className, isOpen, onClose }) => {
+  const dispatch = useAppDispatch();
+  const orders = useAppSelector((store) => store.order.orders);
   const [isSuccess, setIsSuccess] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
@@ -22,12 +28,20 @@ const BuyModal: FC<BuyModalProps> = ({ className, isOpen, onClose }) => {
     setDisabled(false);
   };
 
+  const handleClose = () => {
+    if (isSuccess) {
+      dispatch(patchProduct(orders));
+      dispatch(orderActions.removeOrder());
+    }
+    onClose();
+  };
+
   return (
     <Portal>
       <Modal
         isOpen={isOpen}
         className={className}
-        onClose={onClose}
+        onClose={handleClose}
         disabled={disabled}
       >
         <div className={s.buyModal}>
@@ -35,7 +49,7 @@ const BuyModal: FC<BuyModalProps> = ({ className, isOpen, onClose }) => {
             <h3 className={s.title}>Процесс оплаты</h3>
             <Button
               className={s.button}
-              onClick={onClose}
+              onClick={handleClose}
               theme={ThemeButtonEnum.CLEAR}
               disabled={disabled}
             >
