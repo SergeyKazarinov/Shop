@@ -9,9 +9,10 @@ import s from './OrderItem.module.scss';
 
 interface OrderItemProps {
   product: IProduct;
+  maxQuantity: number;
 }
 
-const OrderItem: FC<OrderItemProps> = ({ product }) => {
+const OrderItem: FC<OrderItemProps> = ({ product, maxQuantity }) => {
   const dispatch = useAppDispatch();
   const [quantity, setQuantity] = useState(product.quantity);
 
@@ -33,10 +34,14 @@ const OrderItem: FC<OrderItemProps> = ({ product }) => {
       <NumericInput
         className={s.input}
         value={quantity} min={0}
-        max={18}
+        max={maxQuantity}
         onChange={onChange}
+        strict
       />
-      <Button theme={ThemeButtonEnum.CLEAR} onClick={handleClick}>
+      <Button
+        theme={ThemeButtonEnum.CLEAR}
+        onClick={handleClick}
+      >
         <img className={s.image} src={close} alt='Крестик' />
       </Button>
     </div>

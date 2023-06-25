@@ -32,9 +32,9 @@ const Product: FC = () => {
   const category = categories.find((item) => item.id === Number(categoryId));
 
   useEffect(() => {
-    const productInTheBasket = orders.find((item) => item.id === product?.id);
+    const productInTheBasket = orders.find((item) => item.product.id === product?.id);
     if (productInTheBasket && product) {
-      const qnty = product.quantity - productInTheBasket.quantity;
+      const qnty = product.quantity - productInTheBasket.product.quantity;
       setAvailableQuantity(qnty);
     } else if (product) {
       setAvailableQuantity(product.quantity);
@@ -47,7 +47,10 @@ const Product: FC = () => {
 
   const onBuy = () => {
     if (product) {
-      dispatch(orderActions.addProduct({ ...product, quantity }));
+      dispatch(orderActions.addProduct({
+        product: { ...product, quantity },
+        maxQuantity: product.quantity,
+      }));
       setQuantity(0);
     }
   };
@@ -68,12 +71,13 @@ const Product: FC = () => {
                 onChange={onChange}
                 value={quantity}
                 mobile={false}
+                strict
               />
               <Button
                 className={s.button}
                 theme={ThemeButtonEnum.BUY}
                 onClick={onBuy}
-                disabled={!quantity}
+                disabled={!quantity || (quantity > product!.quantity)}
               >
                 Купить
               </Button>

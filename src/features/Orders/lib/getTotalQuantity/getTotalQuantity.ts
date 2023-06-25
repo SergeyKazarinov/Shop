@@ -1,5 +1,5 @@
-import { IProduct } from 'shared/types/IProduct';
+import { IOrder } from 'features/orders/model/types/orderSchema';
 
 export const getTotalQuantity = (
-  orders: IProduct[],
-) => orders.reduce((acc, val) => acc + val.quantity, 0);
+  orders: IOrder[],
+) => orders.reduce((acc, val) => acc + val.product.quantity, 0);

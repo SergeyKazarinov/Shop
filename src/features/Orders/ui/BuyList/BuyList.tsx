@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
 import s from './BuyList.module.scss';
 
 interface BuyListProps {
@@ -10,12 +11,12 @@ const BuyList: FC<BuyListProps> = () => {
   const orders = useAppSelector((store) => store.order.orders);
 
   const orderList = orders.map((item) => (
-    <div key={item.id} className={s.flex}>
+    <div key={item.product.id} className={s.flex}>
       <div>
-        <span>{item.title} </span>
-        <span>({item.quantity})</span>
+        <span>{item.product.title} </span>
+        <span>({item.product.quantity})</span>
       </div>
-      <div>{item.price * item.quantity} р.</div>
+      <div>{getTotalPrice([item])} р.</div>
     </div>
   ));
   return (

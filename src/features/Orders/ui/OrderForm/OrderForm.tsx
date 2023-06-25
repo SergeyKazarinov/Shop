@@ -13,7 +13,9 @@ const OrderForm: FC<OrderFromProps> = ({ onBuy }) => {
   const totalQuantity = useAppSelector((store) => store.order.totalQuantity);
   const totalPrice = useAppSelector((store) => store.order.totalPrice);
 
-  const orderList = orders.map((item) => <OrderItem product={item} key={item.id} />);
+  const orderList = orders.map((item) => (
+    <OrderItem product={item.product} maxQuantity={item.maxQuantity} key={item.product.id} />
+  ));
 
   if (orders.length === 0) {
     return (<div className={s.container}>
@@ -30,7 +32,12 @@ const OrderForm: FC<OrderFromProps> = ({ onBuy }) => {
 
         {totalPrice > 0 && <span>{`Цена: ${totalPrice}`}</span>}
         {totalQuantity > 0 && <span>{`Кол-во: ${totalQuantity}`}</span>}
-        <Button theme={ThemeButtonEnum.BUY} onClick={onBuy}>Оплатить</Button>
+        <Button
+          theme={ThemeButtonEnum.BUY}
+          onClick={onBuy}
+        >
+          Оплатить
+        </Button>
       </div>
     </div>
   );

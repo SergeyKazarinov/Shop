@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
 import { AxiosResponse } from 'axios';
+import { IOrder } from 'features/orders/model/types/orderSchema';
 import { IProduct } from 'shared/types/IProduct';
 
-type TPatchProductProps = IProduct[];
+type TPatchProductProps = IOrder[];
 
 const patchProduct = createAsyncThunk<undefined, TPatchProductProps, IThunkConfig<string>>(
   'product/patchProducts',
@@ -11,12 +12,15 @@ const patchProduct = createAsyncThunk<undefined, TPatchProductProps, IThunkConfi
   async (orders, thunkAPI) => {
     try {
       orders.forEach(async (item) => {
-        const response: AxiosResponse<IProduct> = await thunkAPI.extra.api.get(`/items/${item.id}`);
+        const response: AxiosResponse<IProduct> = await thunkAPI.extra.api.get(`/items/${item.product.id}`);
         if (!response.data) {
           throw new Error();
         }
-        const newProduct = { ...response.data, quantity: response.data.quantity - item.quantity };
-        const data = await thunkAPI.extra.api.patch(`/items/${item.id}`, newProduct);
+        const newProduct = {
+          ...response.data,
+          quantity: response.data.quantity - item.product.quantity,
+        };
+        const data = await thunkAPI.extra.api.patch(`/items/${item.product.id}`, newProduct);
         if (!data.data) {
           throw new Error();
         }
