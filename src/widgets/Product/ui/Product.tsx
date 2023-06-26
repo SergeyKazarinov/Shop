@@ -1,4 +1,4 @@
-import { getProductById } from 'entities/productList';
+import { $products, getProductById, getProductByIdFx } from 'entities/productList';
 import { orderActions } from 'features/orders';
 import image from 'images/item.jpg';
 import { FC, useEffect, useState } from 'react';
@@ -8,6 +8,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
+import { useEvent, useStore } from 'effector-react';
+import { $categories } from 'entities/categoriesList';
 import s from './Product.module.scss';
 
 type TParams = {
@@ -18,19 +20,25 @@ type TParams = {
 const Product: FC = () => {
   const { categoryId, productId } = useParams<TParams>();
   const dispatch = useAppDispatch();
-  const product = useAppSelector((store) => store.product.product);
-  const errorMessage = useAppSelector((store) => store.product.error);
-  const isLoading = useAppSelector((store) => store.product.isLoading);
-  const categories = useAppSelector((store) => store.categories.categories);
+  // const product = useAppSelector((store) => store.product.product);
+  // const errorMessage = useAppSelector((store) => store.product.error);
+  // const isLoading = useAppSelector((store) => store.product.isLoading);
+  // const categories = useAppSelector((store) => store.categories.categories);
   const orders = useAppSelector((store) => store.order.orders);
   const [quantity, setQuantity] = useState(0);
-  const [availableQuantity, setAvailableQuantity] = useState(product?.quantity);
+  // Effector
+  const { product, error: errorMessage } = useStore($products);
+  const { categories } = useStore($categories);
+  const fetchProductById = useEvent(getProductByIdFx);
+  const isLoading = useStore(getProductByIdFx.pending);
 
+  const [availableQuantity, setAvailableQuantity] = useState(product?.quantity);
   const hasCategory = categories.find((item) => item.id === Number(categoryId));
 
   useEffect(() => {
     if (productId && categoryId) {
-      dispatch(getProductById({ productId, categoryId }));
+      // dispatch(getProductById({ productId, categoryId }));
+      fetchProductById({ categoryId, productId });
     }
   }, []);
 

@@ -1,10 +1,13 @@
 import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+// import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+// import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Card from 'shared/ui/Card/Card';
 import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
-import getProducts from '../../model/services/getProducts';
+import { $products, getProductsFx } from 'entities/productList/model/productList/productList';
+import { useEvent, useStore } from 'effector-react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getProducts } from 'entities/productList';
 import s from './ProductList.module.scss';
 
 type TParams = {
@@ -13,14 +16,18 @@ type TParams = {
 
 const ProductList: FC = () => {
   const { categoryId } = useParams<TParams>();
-  const products = useAppSelector((store) => store.product.products);
-  const errorMessage = useAppSelector((store) => store.product.error);
-  const isLoading = useAppSelector((store) => store.product.isLoading);
+  // const products = useAppSelector((store) => store.product.products);
+  // const errorMessage = useAppSelector((store) => store.product.error);
+  // const isLoading = useAppSelector((store) => store.product.isLoading);
   const dispatch = useAppDispatch();
+  const { products, error: errorMessage } = useStore($products);
+  const isLoading = useStore(getProductsFx.pending);
+  const fetchProducts = useEvent(getProductsFx);
 
   useEffect(() => {
     if (categoryId) {
       dispatch(getProducts(categoryId));
+      fetchProducts(categoryId);
     }
   }, []);
 

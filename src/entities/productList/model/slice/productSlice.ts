@@ -15,9 +15,7 @@ const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    clearErrorMessage: (state) => {
-      state.error = '';
-    },
+
   },
 
   extraReducers: (builder) => {
