@@ -1,7 +1,7 @@
 import { useEvent, useStore } from 'effector-react';
-import { $products, getProductsFx } from 'entities/productList';
+import { $products, getProductsFx, setErrorMessageEvent } from 'entities/productList';
 import { FC, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Card from 'shared/ui/Card/Card';
 import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 import s from './ProductList.module.scss';
@@ -13,6 +13,7 @@ type TParams = {
 const ProductList: FC = () => {
   const { categoryId } = useParams<TParams>();
   const { products, error: errorMessage } = useStore($products);
+  const navigate = useNavigate();
   const isLoading = useStore(getProductsFx.pending);
   const getProducts = useEvent(getProductsFx);
 
@@ -31,12 +32,17 @@ const ProductList: FC = () => {
     />
   ));
 
+  const handleClick = () => {
+    setErrorMessageEvent('');
+    navigate('/', { replace: true });
+  };
+
   if (errorMessage) {
-    return <ErrorMessage title="Error" subtitle={errorMessage} />;
+    return <ErrorMessage title="Error" subtitle={errorMessage} onClick={handleClick} />;
   }
 
   if (products.length === 0 && !isLoading) {
-    return <ErrorMessage title='404' subtitle='Такой категории нет' />;
+    return <ErrorMessage title='404' subtitle='Такой категории нет' onClick={handleClick} />;
   }
 
   return (

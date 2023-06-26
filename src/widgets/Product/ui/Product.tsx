@@ -1,11 +1,11 @@
 import { useEvent, useStore } from 'effector-react';
 import { $categories } from 'entities/categoriesList';
-import { $products, getProductByIdFx } from 'entities/productList';
+import { $products, getProductByIdFx, setErrorMessageEvent } from 'entities/productList';
 import { $order, addProductEvent } from 'features/orders';
 import image from 'images/item.jpg';
 import { FC, useEffect, useState } from 'react';
 import NumericInput from 'react-numeric-input';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 import s from './Product.module.scss';
@@ -17,7 +17,7 @@ type TParams = {
 
 const Product: FC = () => {
   const { categoryId, productId } = useParams<TParams>();
-
+  const navigate = useNavigate();
   const { product, error: errorMessage } = useStore($products);
   const { categories } = useStore($categories);
   const { orders } = useStore($order);
@@ -61,12 +61,17 @@ const Product: FC = () => {
     }
   };
 
+  const handleClick = () => {
+    setErrorMessageEvent('');
+    navigate('/', { replace: true });
+  };
+
   if (errorMessage && !isLoading) {
-    return <ErrorMessage title='Error' subtitle={errorMessage} />;
+    return <ErrorMessage title='Error' subtitle={errorMessage} onClick={handleClick} />;
   }
 
   if (!isLoading && (!product || !hasCategory)) {
-    return <ErrorMessage title='404' subtitle='Такого товара нет' />;
+    return <ErrorMessage title='404' subtitle='Такого товара нет' onClick={handleClick} />;
   }
 
   return (

@@ -1,4 +1,4 @@
-import { createStore } from 'effector';
+import { createEvent, createStore } from 'effector';
 import { getCategoriesFx } from '../services/getCategoriesFx';
 import { ICategoriesSchema } from '../types/categoriesSchema';
 import { setCategoriesFn } from '../lib/setCategoriesFn';
@@ -10,6 +10,9 @@ const initialState: ICategoriesSchema = {
   isLoading: false,
 };
 
+export const setErrorMessageEvent = createEvent<string>();
+
 export const $categories = createStore<ICategoriesSchema>(initialState)
   .on(getCategoriesFx.doneData, setCategoriesFn)
-  .on(getCategoriesFx.failData, setErrorMessageFn);
+  .on(getCategoriesFx.failData, setErrorMessageFn)
+  .on(setErrorMessageEvent, setErrorMessageFn);
