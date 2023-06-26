@@ -9,16 +9,25 @@
 - Processes — сложные сценарии, покрывающие несколько страниц (например, аутентификация).  
 - App — настройки, стили и провайдеры для всего приложения.  
 
+Проект разработак как с использованием Redux Toolkit, так и с использованием Effector.  
+Для просмотра кода с использованием Redux Toolkit перейти в ветку redux.
+
+```bash
+git checkout redux
+```
+
 
 ## Stacks:
 
 - TypeScript
 - React
 - React-Router v.6
-- Redux-Toolkit
+- Redux Toolkit
+- Effector
 - Axios
 - SCSS-module
 - Eslint
+- Node v18.x
 
 ## Быстрый старт
 
