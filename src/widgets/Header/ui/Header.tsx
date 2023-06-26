@@ -1,11 +1,12 @@
-import { $order, BuyModal, OrderModal } from 'features/orders';
+import { $categories } from '@entities/categoriesList';
+import { $products } from '@entities/productList';
+import { $order, BuyModal, OrderModal } from '@features/orders';
+import { getPathArrayFromLocation } from '@shared/lib/getPathArrayFromLocation';
+import { Button, ThemeButtonEnum } from '@shared/ui/Button';
+import { useStore } from 'effector-react';
 import { FC, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation';
-import { Button, ThemeButtonEnum } from 'shared/ui/Button';
-import { useStore } from 'effector-react';
-import { $categories } from 'entities/categoriesList';
-import { $products } from 'entities/productList';
+
 import s from './Header.module.scss';
 
 const Header: FC = () => {

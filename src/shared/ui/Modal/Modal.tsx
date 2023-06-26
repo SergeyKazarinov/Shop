@@ -1,7 +1,8 @@
+import { classNames } from '@shared/lib/classNames/classNames';
 import {
   FC, MouseEvent, ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+
 import s from './Modal.module.scss';
 import Portal from '../Portal/Portal';
 

@@ -1,9 +1,10 @@
-import { FC } from 'react';
-import { Card } from 'shared/ui/Card';
-import { ErrorMessage } from 'shared/ui/ErrorMessage';
-import { $categories, getCategoriesFx, setErrorMessageEvent } from 'entities/categoriesList';
+import { $categories, getCategoriesFx, setErrorMessageEvent } from '@entities/categoriesList';
+import { Card } from '@shared/ui/Card';
+import { ErrorMessage } from '@shared/ui/ErrorMessage';
 import { useStore } from 'effector-react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import s from './CategoriesList.module.scss';
 
 const CategoriesList: FC = () => {

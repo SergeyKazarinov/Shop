@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { CategoriesList } from 'entities/categoriesList';
+import { CategoriesList } from '@entities/categoriesList';
 import { motion } from 'framer-motion';
+import { FC } from 'react';
 
 const CategoriesListPage: FC = () => (
   <motion.section

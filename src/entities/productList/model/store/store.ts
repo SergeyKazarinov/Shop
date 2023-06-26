@@ -1,11 +1,12 @@
 import { createEvent, createStore } from 'effector';
+
+import { getProductByIdFn } from '../lib/getProductByIdFn';
+import { getProductsFn } from '../lib/getProductFn';
+import { setErrorMessageFn } from '../lib/setErrorMessageFn';
 import { getProductByIdFx } from '../services/getProductByIdFx';
 import { getProductsFx } from '../services/getProductsFx';
 import { patchProductFx } from '../services/patchProductFx';
 import { IProductSchema } from '../types/productSchema';
-import { getProductsFn } from '../lib/getProductFn';
-import { setErrorMessageFn } from '../lib/setErrorMessageFn';
-import { getProductByIdFn } from '../lib/getProductByIdFn';
 
 const initialState: IProductSchema = {
   products: [],

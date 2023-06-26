@@ -1,6 +1,7 @@
+import image from 'images/item.jpg';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import image from 'images/item.jpg';
+
 import s from './Card.module.scss';
 
 interface CardProps {

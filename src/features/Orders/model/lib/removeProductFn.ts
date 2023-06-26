@@ -1,4 +1,5 @@
-import { ORDER } from 'shared/consts/localStorage';
+import { ORDER } from '@shared/consts/localStorage';
+
 import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
 import { getTotalQuantity } from '../../lib/getTotalQuantity/getTotalQuantity';
 import { IOrderSchema } from '../types/orderSchema';

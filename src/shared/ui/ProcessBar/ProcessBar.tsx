@@ -2,6 +2,7 @@ import { Line } from 'rc-progress';
 import {
   FC, useEffect, useRef, useState,
 } from 'react';
+
 import Loader from '../Loader/Loader';
 
 interface ProcessBarProps {

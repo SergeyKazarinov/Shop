@@ -1,7 +1,8 @@
+import { classNames } from '@shared/lib/classNames/classNames';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import Button, { ThemeButtonEnum } from '../Button/Button';
+
 import s from './ErrorMessage.module.scss';
+import Button, { ThemeButtonEnum } from '../Button/Button';
 
 export enum SizeTitleEnum {
   NORMAL = 'default',

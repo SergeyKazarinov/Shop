@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, FC, memo } from 'react';
-import { classNames } from '../../lib/classNames/classNames';
+
 import s from './Button.module.scss';
+import { classNames } from '../../lib/classNames/classNames';
 
 export enum ThemeButtonEnum {
   BUY = 'buy',

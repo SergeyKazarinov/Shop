@@ -1,8 +1,9 @@
-import { FC } from 'react';
+import { $order } from '@features/orders';
 import { useStore } from 'effector-react';
-import { $order } from 'features/orders';
-import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
+import { FC } from 'react';
+
 import s from './BuyList.module.scss';
+import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
 
 const BuyList: FC = () => {
   const { orders } = useStore($order);

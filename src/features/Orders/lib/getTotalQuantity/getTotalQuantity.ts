@@ -1,4 +1,4 @@
-import { IOrder } from 'features/orders';
+import { IOrder } from '@features/orders';
 
 export const getTotalQuantity = (
   orders: IOrder[],

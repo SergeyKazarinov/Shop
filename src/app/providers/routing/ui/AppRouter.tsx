@@ -1,8 +1,9 @@
+import { PageNotFound } from '@pages/PageNotFound';
+import { Loader } from '@shared/ui/Loader';
 import Layout from 'app/Layout/Layout';
-import { PageNotFound } from 'pages/PageNotFound';
 import { FC, Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Loader } from 'shared/ui/Loader';
+
 import { routeConfig } from '../config/routeConfig';
 
 const AppRouter: FC = () => {

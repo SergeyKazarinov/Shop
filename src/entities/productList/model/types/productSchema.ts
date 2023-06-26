@@ -1,4 +1,4 @@
-import { IProduct } from 'shared/types';
+import { IProduct } from '@shared/types';
 
 export interface IProductSchema {
   products: IProduct[];

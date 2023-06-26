@@ -1,4 +1,5 @@
-import { ORDER } from 'shared/consts/localStorage';
+import { ORDER } from '@shared/consts/localStorage';
+
 import { IOrderSchema } from '../types/orderSchema';
 
 export const setOrderStateFn = (state: IOrderSchema) => {

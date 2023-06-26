@@ -1,8 +1,8 @@
+import { IOrder } from '@features/orders';
+import { $api } from '@shared/api';
+import { IProduct } from '@shared/types';
 import { AxiosError, AxiosResponse } from 'axios';
 import { createEffect } from 'effector';
-import { IOrder } from 'features/orders';
-import { $api } from 'shared/api';
-import { IProduct } from 'shared/types';
 
 type TPatchProductProps = IOrder[];
 

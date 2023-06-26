@@ -1,6 +1,7 @@
-import { ORDER } from 'shared/consts/localStorage';
-import { getTotalQuantity } from '../../lib/getTotalQuantity/getTotalQuantity';
+import { ORDER } from '@shared/consts/localStorage';
+
 import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
+import { getTotalQuantity } from '../../lib/getTotalQuantity/getTotalQuantity';
 import { IOrderSchema, ISetQuantity } from '../types/orderSchema';
 
 export const setQuantityFn = (state: IOrderSchema, payload: ISetQuantity) => {

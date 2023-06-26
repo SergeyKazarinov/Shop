@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { FC, ReactNode } from 'react';
 
 interface AnimateProviderProps {
   children: ReactNode;

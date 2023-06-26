@@ -1,8 +1,10 @@
+import { getCategoriesFx } from '@entities/categoriesList';
+import { setOrderStateEvent } from '@features/orders';
 import { useEvent } from 'effector-react';
-import { getCategoriesFx } from 'entities/categoriesList';
-import { setOrderStateEvent } from 'features/orders';
 import { FC, useEffect } from 'react';
+
 import { AppRouter } from './providers/routing';
+
 import './styles/index.scss';
 
 const App: FC = () => {

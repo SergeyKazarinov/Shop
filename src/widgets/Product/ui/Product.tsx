@@ -1,13 +1,14 @@
+import { $categories, setErrorMessageEvent } from '@entities/categoriesList';
+import { $products, getProductByIdFx } from '@entities/productList';
+import { $order, addProductEvent } from '@features/orders';
+import { Button, ThemeButtonEnum } from '@shared/ui/Button';
+import { ErrorMessage } from '@shared/ui/ErrorMessage';
 import { useEvent, useStore } from 'effector-react';
-import { $categories } from 'entities/categoriesList';
-import { $products, getProductByIdFx, setErrorMessageEvent } from 'entities/productList';
-import { $order, addProductEvent } from 'features/orders';
 import image from 'images/item.jpg';
 import { FC, useEffect, useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, ThemeButtonEnum } from 'shared/ui/Button';
-import { ErrorMessage } from 'shared/ui/ErrorMessage';
+
 import s from './Product.module.scss';
 
 type TParams = {

@@ -1,8 +1,9 @@
 import { createEvent, createStore } from 'effector';
-import { getCategoriesFx } from '../services/getCategoriesFx';
-import { ICategoriesSchema } from '../types/categoriesSchema';
+
 import { setCategoriesFn } from '../lib/setCategoriesFn';
 import { setErrorMessageFn } from '../lib/setErrorMessageFn';
+import { getCategoriesFx } from '../services/getCategoriesFx';
+import { ICategoriesSchema } from '../types/categoriesSchema';
 
 const initialState: ICategoriesSchema = {
   categories: [],

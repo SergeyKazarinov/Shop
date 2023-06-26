@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { Product } from 'widgets/Product';
+import { Product } from '@widgets/Product';
 import { motion } from 'framer-motion';
+import { FC } from 'react';
 
 const ProductPage: FC = () => (
   <motion.section

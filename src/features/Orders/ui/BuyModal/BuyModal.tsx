@@ -1,14 +1,15 @@
-import { patchProductFx } from 'entities/productList';
+import { patchProductFx } from '@entities/productList';
+import { $order, removeOrderEvent } from '@features/orders';
+import { Button, ThemeButtonEnum } from '@shared/ui/Button';
+import { Modal } from '@shared/ui/Modal';
+import { Portal } from '@shared/ui/Portal';
+import { ProcessBar } from '@shared/ui/ProcessBar';
+import { useEvent, useStore } from 'effector-react';
 import image from 'images/closeBtn.svg';
 import { FC, useState } from 'react';
-import { useEvent, useStore } from 'effector-react';
-import { $order, removeOrderEvent } from 'features/orders';
-import { Button, ThemeButtonEnum } from 'shared/ui/Button';
-import { Modal } from 'shared/ui/Modal';
-import { Portal } from 'shared/ui/Portal';
-import { ProcessBar } from 'shared/ui/ProcessBar';
-import BuyList from '../BuyList/BuyList';
+
 import s from './BuyModal.module.scss';
+import BuyList from '../BuyList/BuyList';
 
 interface BuyModalProps {
   isOpen: boolean;

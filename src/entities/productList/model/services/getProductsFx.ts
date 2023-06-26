@@ -1,7 +1,7 @@
+import { $api } from '@shared/api';
+import { IProduct } from '@shared/types';
 import { AxiosError } from 'axios';
 import { createEffect } from 'effector';
-import { $api } from 'shared/api';
-import { IProduct } from 'shared/types';
 
 export const getProductsFx = createEffect<string, IProduct[], Error>(
   async (categoryId) => {
