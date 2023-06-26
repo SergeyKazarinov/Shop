@@ -6,9 +6,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import Loader from 'shared/ui/Loader/Loader';
-import Portal from 'shared/ui/Portal/Portal';
+import { classNames } from 'shared/lib/classNames';
+import { Loader } from 'shared/ui/Loader';
+import { Portal } from 'shared/ui/Portal';
 import { OrderFormLazy } from '../OrderForm/OrderForm.lazy';
 import s from './OrderModal.module.scss';
 

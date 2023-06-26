@@ -1,4 +1,4 @@
-import ErrorMessage, { SizeTitleEnum } from 'shared/ui/ErrorMessage/ErrorMessage';
+import { ErrorMessage, SizeTitleEnum } from 'shared/ui/ErrorMessage';
 import s from './PageNotFound.module.scss';
 
 const PageNotFound = () => (

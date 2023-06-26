@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
 import { $order } from 'features/orders';
 import { FC } from 'react';
-import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
+import { Button, ThemeButtonEnum } from 'shared/ui/Button';
 import OrderItem from '../OrderItem/OrderItem';
 import s from './OrderForm.module.scss';
 

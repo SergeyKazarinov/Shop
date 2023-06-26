@@ -2,8 +2,8 @@ import { useEvent, useStore } from 'effector-react';
 import { $products, getProductsFx, setErrorMessageEvent } from 'entities/productList';
 import { FC, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Card from 'shared/ui/Card/Card';
-import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
+import { Card } from 'shared/ui/Card';
+import { ErrorMessage } from 'shared/ui/ErrorMessage';
 import s from './ProductList.module.scss';
 
 type TParams = {

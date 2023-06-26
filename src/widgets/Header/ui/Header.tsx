@@ -1,8 +1,8 @@
 import { $order, BuyModal, OrderModal } from 'features/orders';
 import { FC, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation/getPathArrayFromLocation';
-import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
+import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation';
+import { Button, ThemeButtonEnum } from 'shared/ui/Button';
 import { useStore } from 'effector-react';
 import { $categories } from 'entities/categoriesList';
 import { $products } from 'entities/productList';

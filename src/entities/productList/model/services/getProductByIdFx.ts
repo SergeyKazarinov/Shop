@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { createEffect } from 'effector';
-import { $api } from 'shared/api/api';
-import { IProduct } from 'shared/types/IProduct';
+import { $api } from 'shared/api';
+import { IProduct } from 'shared/types';
 
 type TGetProductByIdProps = {
   categoryId: string;

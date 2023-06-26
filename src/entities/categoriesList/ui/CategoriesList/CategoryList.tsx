@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Card from 'shared/ui/Card/Card';
-import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
+import { Card } from 'shared/ui/Card';
+import { ErrorMessage } from 'shared/ui/ErrorMessage';
 import { $categories, getCategoriesFx, setErrorMessageEvent } from 'entities/categoriesList';
 import { useStore } from 'effector-react';
 import { useNavigate } from 'react-router-dom';

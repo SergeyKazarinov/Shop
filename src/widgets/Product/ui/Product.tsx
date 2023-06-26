@@ -6,8 +6,8 @@ import image from 'images/item.jpg';
 import { FC, useEffect, useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { useNavigate, useParams } from 'react-router-dom';
-import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
+import { Button, ThemeButtonEnum } from 'shared/ui/Button';
+import { ErrorMessage } from 'shared/ui/ErrorMessage';
 import s from './Product.module.scss';
 
 type TParams = {

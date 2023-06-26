@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { createEffect } from 'effector';
-import { $api } from 'shared/api/api';
-import { ICategory } from 'shared/types/ICategory';
+import { $api } from 'shared/api';
+import { ICategory } from 'shared/types';
 
 export const getCategoriesFx = createEffect<void, ICategory[], Error>(
   async () => {

@@ -1,6 +1,6 @@
 import { CategoriesListPageLazy } from 'pages/CategoriesListPage';
 import { ProductListPageLazy } from 'pages/ProductListPage';
-import { ProductPageLazy } from 'pages/ProductPage/ui/ProductPage.lazy';
+import { ProductPageLazy } from 'pages/ProductPage';
 import { RouteProps } from 'react-router-dom';
 
 export enum AppRoutesEnum {

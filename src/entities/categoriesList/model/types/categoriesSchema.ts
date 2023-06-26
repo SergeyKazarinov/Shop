@@ -1,4 +1,4 @@
-import { ICategory } from 'shared/types/ICategory';
+import { ICategory } from 'shared/types';
 
 export interface ICategoriesSchema {
   categories: ICategory[];

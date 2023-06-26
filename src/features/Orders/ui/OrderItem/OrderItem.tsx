@@ -1,8 +1,8 @@
 import close from 'images/closeBtn.svg';
 import { FC, useState } from 'react';
 import NumericInput from 'react-numeric-input';
-import { IProduct } from 'shared/types/IProduct';
-import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
+import { IProduct } from 'shared/types';
+import { Button, ThemeButtonEnum } from 'shared/ui/Button';
 import { removeProductEvent, setQuantityEvent } from 'features/orders';
 import s from './OrderItem.module.scss';
 
