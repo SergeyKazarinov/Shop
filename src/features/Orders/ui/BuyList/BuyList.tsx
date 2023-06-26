@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
+import { useStore } from 'effector-react';
+import { $order } from 'features/orders';
 import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
 import s from './BuyList.module.scss';
 
 const BuyList: FC = () => {
-  const orders = useAppSelector((store) => store.order.orders);
+  const { orders } = useStore($order);
 
   const orderList = orders.map((item) => (
     <div key={item.product.id} className={s.flex}>

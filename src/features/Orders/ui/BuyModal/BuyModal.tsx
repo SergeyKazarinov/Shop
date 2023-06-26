@@ -1,13 +1,12 @@
-import { patchProduct } from 'entities/productList';
+import { patchProductFx } from 'entities/productList';
 import image from 'images/closeBtn.svg';
 import { FC, useState } from 'react';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import Modal from 'shared/ui/Modal/Modal';
-import Portal from 'shared/ui/Portal/Portal';
-import ProcessBar from 'shared/ui/ProcessBar/ProcessBar';
-import { orderActions } from '../../model/slice/orderSlice';
+import { useEvent, useStore } from 'effector-react';
+import { $order, removeOrderEvent } from 'features/orders';
+import { Button, ThemeButtonEnum } from 'shared/ui/Button';
+import { Modal } from 'shared/ui/Modal';
+import { Portal } from 'shared/ui/Portal';
+import { ProcessBar } from 'shared/ui/ProcessBar';
 import BuyList from '../BuyList/BuyList';
 import s from './BuyModal.module.scss';
 
@@ -18,8 +17,9 @@ interface BuyModalProps {
 }
 
 const BuyModal: FC<BuyModalProps> = ({ className, isOpen, onClose }) => {
-  const dispatch = useAppDispatch();
-  const orders = useAppSelector((store) => store.order.orders);
+  const { orders } = useStore($order);
+  const patchProduct = useEvent(patchProductFx);
+
   const [isSuccess, setIsSuccess] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
@@ -30,8 +30,8 @@ const BuyModal: FC<BuyModalProps> = ({ className, isOpen, onClose }) => {
 
   const handleClose = () => {
     if (isSuccess) {
-      dispatch(patchProduct(orders));
-      dispatch(orderActions.removeOrder());
+      patchProduct(orders);
+      removeOrderEvent();
     }
     onClose();
   };

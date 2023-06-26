@@ -1,1 +1,1 @@
-export { ProductListPageLazy } from 'pages/ProductListPage';
+export { ProductPageLazy } from './ui/ProductPage.lazy';

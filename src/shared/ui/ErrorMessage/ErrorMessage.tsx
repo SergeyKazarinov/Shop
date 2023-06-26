@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import Button, { ThemeButtonEnum } from '../Button/Button';
 import s from './ErrorMessage.module.scss';
@@ -14,6 +13,7 @@ interface ErrorMessageProps {
   title?: string;
   subtitle: string;
   sizeTitle?: SizeTitleEnum;
+  onClick?: () => void;
 }
 
 const ErrorMessage: FC<ErrorMessageProps> = ({
@@ -21,25 +21,19 @@ const ErrorMessage: FC<ErrorMessageProps> = ({
   sizeTitle = SizeTitleEnum.NORMAL,
   title,
   subtitle,
-}) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/', { replace: true });
-  };
-  return (
-    <div className={classNames(s.errorMessage, {}, [className])}>
-      <h2 className={classNames('', {}, [s[sizeTitle]])}>{title}</h2>
-      <h3>{subtitle}</h3>
-      <Button
-        theme={ThemeButtonEnum.CLEAR}
-        onClick={handleClick}
-        className={s.link}
-      >
-        На главную
-      </Button>
-    </div>
-  );
-};
+  onClick,
+}) => (
+  <div className={classNames(s.errorMessage, {}, [className])}>
+    <h2 className={classNames('', {}, [s[sizeTitle]])}>{title}</h2>
+    <h3>{subtitle}</h3>
+    {onClick && <Button
+      theme={ThemeButtonEnum.CLEAR}
+      onClick={onClick}
+      className={s.link}
+    >
+      На главную
+    </Button>}
+  </div>
+);
 
 export default ErrorMessage;

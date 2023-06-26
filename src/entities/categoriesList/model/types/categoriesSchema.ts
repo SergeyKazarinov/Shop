@@ -1,7 +1,7 @@
-import { ICategory } from 'shared/types/ICategory';
+import { ICategory } from 'shared/types';
 
 export interface ICategoriesSchema {
   categories: ICategory[];
-  error?: string;
+  errorMessage?: string;
   isLoading: boolean;
 }

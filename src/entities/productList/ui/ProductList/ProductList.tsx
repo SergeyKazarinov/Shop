@@ -1,10 +1,9 @@
+import { useEvent, useStore } from 'effector-react';
+import { $products, getProductsFx, setErrorMessageEvent } from 'entities/productList';
 import { FC, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
-import Card from 'shared/ui/Card/Card';
-import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
-import getProducts from '../../model/services/getProducts';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Card } from 'shared/ui/Card';
+import { ErrorMessage } from 'shared/ui/ErrorMessage';
 import s from './ProductList.module.scss';
 
 type TParams = {
@@ -13,14 +12,14 @@ type TParams = {
 
 const ProductList: FC = () => {
   const { categoryId } = useParams<TParams>();
-  const products = useAppSelector((store) => store.product.products);
-  const errorMessage = useAppSelector((store) => store.product.error);
-  const isLoading = useAppSelector((store) => store.product.isLoading);
-  const dispatch = useAppDispatch();
+  const { products, error: errorMessage } = useStore($products);
+  const navigate = useNavigate();
+  const isLoading = useStore(getProductsFx.pending);
+  const getProducts = useEvent(getProductsFx);
 
   useEffect(() => {
     if (categoryId) {
-      dispatch(getProducts(categoryId));
+      getProducts(categoryId);
     }
   }, []);
 
@@ -33,12 +32,17 @@ const ProductList: FC = () => {
     />
   ));
 
+  const handleClick = () => {
+    setErrorMessageEvent('');
+    navigate('/', { replace: true });
+  };
+
   if (errorMessage) {
-    return <ErrorMessage title="Error" subtitle={errorMessage} />;
+    return <ErrorMessage title="Error" subtitle={errorMessage} onClick={handleClick} />;
   }
 
   if (products.length === 0 && !isLoading) {
-    return <ErrorMessage title='404' subtitle='Такой категории нет' />;
+    return <ErrorMessage title='404' subtitle='Такой категории нет' onClick={handleClick} />;
   }
 
   return (
