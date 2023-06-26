@@ -1,7 +1,7 @@
 import { BuyModal, OrderModal } from 'features/orders';
 import { FC, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation.ts/getPathArrayFromLocation';
+import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation/getPathArrayFromLocation';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import s from './Header.module.scss';
