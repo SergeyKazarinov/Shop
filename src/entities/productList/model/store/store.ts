@@ -3,9 +3,9 @@ import { getProductByIdFx } from '../services/getProductByIdFx';
 import { getProductsFx } from '../services/getProductsFx';
 import { patchProductFx } from '../services/patchProductFx';
 import { IProductSchema } from '../types/productSchema';
-import { getProducts } from '../lib/getProduct';
-import { setErrorMessage } from '../lib/setErrorMessage';
-import { getProductById } from '../lib/getProductById';
+import { getProductsFn } from '../lib/getProductFn';
+import { setErrorMessageFn } from '../lib/setErrorMessageFn';
+import { getProductByIdFn } from '../lib/getProductByIdFn';
 
 const initialState: IProductSchema = {
   products: [],
@@ -15,9 +15,9 @@ const initialState: IProductSchema = {
 };
 
 export const $products = createStore<IProductSchema>(initialState)
-  .on(getProductsFx.doneData, getProducts)
-  .on(getProductsFx.failData, setErrorMessage)
-  .on(getProductByIdFx.doneData, getProductById)
-  .on(getProductByIdFx.failData, setErrorMessage)
+  .on(getProductsFx.doneData, getProductsFn)
+  .on(getProductsFx.failData, setErrorMessageFn)
+  .on(getProductByIdFx.doneData, getProductByIdFn)
+  .on(getProductByIdFx.failData, setErrorMessageFn)
   .on(patchProductFx.doneData, (state) => state)
-  .on(patchProductFx.failData, setErrorMessage);
+  .on(patchProductFx.failData, setErrorMessageFn);

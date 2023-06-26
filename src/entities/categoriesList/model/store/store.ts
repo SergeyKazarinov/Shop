@@ -1,8 +1,8 @@
 import { createStore } from 'effector';
 import { getCategoriesFx } from '../services/getCategoriesFx';
 import { ICategoriesSchema } from '../types/categoriesSchema';
-import { setCategories } from '../lib/setCategories';
-import { setErrorMessage } from '../lib/setErrorMessage';
+import { setCategoriesFn } from '../lib/setCategoriesFn';
+import { setErrorMessageFn } from '../lib/setErrorMessageFn';
 
 const initialState: ICategoriesSchema = {
   categories: [],
@@ -11,5 +11,5 @@ const initialState: ICategoriesSchema = {
 };
 
 export const $categories = createStore<ICategoriesSchema>(initialState)
-  .on(getCategoriesFx.doneData, setCategories)
-  .on(getCategoriesFx.failData, setErrorMessage);
+  .on(getCategoriesFx.doneData, setCategoriesFn)
+  .on(getCategoriesFx.failData, setErrorMessageFn);
