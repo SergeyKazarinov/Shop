@@ -80,7 +80,7 @@ const Product: FC = () => {
               <NumericInput
                 className={s.input}
                 min={0}
-                max={product?.quantity}
+                max={availableQuantity}
                 onChange={onChange}
                 value={quantity}
                 mobile={false}
