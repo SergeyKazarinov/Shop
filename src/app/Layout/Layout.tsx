@@ -4,7 +4,7 @@ import { Header } from 'widgets/Header';
 const Layout = () => (
   <>
     <Header />
-    <main>
+    <main className='page-wrapper'>
       <Outlet />
     </main>
   </>

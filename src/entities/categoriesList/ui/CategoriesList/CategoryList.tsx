@@ -4,11 +4,7 @@ import Card from 'shared/ui/Card/Card';
 import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
 import s from './CategoriesList.module.scss';
 
-interface CategoriesListProps {
-
-}
-
-const CategoriesList: FC<CategoriesListProps> = () => {
+const CategoriesList: FC = () => {
   const categories = useAppSelector((store) => store.categories.categories);
   const errorMessage = useAppSelector((store) => store.categories.error);
   const isLoading = useAppSelector((store) => store.categories.isLoading);

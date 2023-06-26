@@ -3,11 +3,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import { getTotalPrice } from '../../lib/getTotalPrice/getTotalPrice';
 import s from './BuyList.module.scss';
 
-interface BuyListProps {
-
-}
-
-const BuyList: FC<BuyListProps> = () => {
+const BuyList: FC = () => {
   const orders = useAppSelector((store) => store.order.orders);
 
   const orderList = orders.map((item) => (
