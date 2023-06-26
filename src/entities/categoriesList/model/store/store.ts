@@ -11,5 +11,5 @@ const initialState: ICategoriesSchema = {
 };
 
 export const $categories = createStore<ICategoriesSchema>(initialState)
-  .on(getCategoriesFx.doneData, (state, result) => setCategories(state, result))
-  .on(getCategoriesFx.failData, (state, result) => setErrorMessage(state, result));
+  .on(getCategoriesFx.doneData, setCategories)
+  .on(getCategoriesFx.failData, setErrorMessage);

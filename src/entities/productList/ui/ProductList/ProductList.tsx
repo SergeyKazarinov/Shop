@@ -4,10 +4,9 @@ import { useParams } from 'react-router-dom';
 // import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Card from 'shared/ui/Card/Card';
 import ErrorMessage from 'shared/ui/ErrorMessage/ErrorMessage';
-import { $products, getProductsFx } from 'entities/productList/model/productList/productList';
 import { useEvent, useStore } from 'effector-react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getProducts } from 'entities/productList';
+import { $products, getProducts, getProductsFx } from 'entities/productList';
 import s from './ProductList.module.scss';
 
 type TParams = {
