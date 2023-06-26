@@ -1,8 +1,7 @@
-import { BuyModal, OrderModal } from 'features/orders';
+import { $order, BuyModal, OrderModal } from 'features/orders';
 import { FC, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getPathArrayFromLocation } from 'shared/lib/getPathArrayFromLocation/getPathArrayFromLocation';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import { useStore } from 'effector-react';
 import { $categories } from 'entities/categoriesList';
@@ -12,16 +11,13 @@ import s from './Header.module.scss';
 const Header: FC = () => {
   const { pathname } = useLocation();
   const pathArray = getPathArrayFromLocation(pathname);
-  // const categories = useAppSelector((store) => store.categories.categories);
-  // const product = useAppSelector((store) => store.product.product);
-  const totalQuantity = useAppSelector((store) => store.order.totalQuantity);
-  const totalPrice = useAppSelector((store) => store.order.totalPrice);
-  const [isOpenOrderModal, setIsOpenOrderModal] = useState(false);
-  const [isOpenBuyModal, setIsOpenBuyModal] = useState(false);
 
-  // effector
   const { categories } = useStore($categories);
   const { product } = useStore($products);
+  const { totalPrice, totalQuantity } = useStore($order);
+
+  const [isOpenOrderModal, setIsOpenOrderModal] = useState(false);
+  const [isOpenBuyModal, setIsOpenBuyModal] = useState(false);
 
   const toggleModal = () => {
     setIsOpenOrderModal((state) => !state);

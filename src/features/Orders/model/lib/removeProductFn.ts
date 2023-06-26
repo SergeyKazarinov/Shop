@@ -10,5 +10,5 @@ export const removeProductFn = (state: IOrderSchema, payload: number) => {
   state.totalQuantity = getTotalQuantity(state.orders);
   localStorage.setItem(ORDER, JSON.stringify(state));
 
-  return state;
+  return { ...state };
 };

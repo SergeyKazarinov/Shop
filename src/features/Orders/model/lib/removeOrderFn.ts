@@ -7,5 +7,5 @@ export const removeOrderFn = (state: IOrderSchema) => {
   state.totalQuantity = 0;
 
   localStorage.removeItem(ORDER);
-  return state;
+  return { ...state };
 };

@@ -7,5 +7,5 @@ export const setOrderStateFn = (state: IOrderSchema) => {
     const data: IOrderSchema = JSON.parse(localState);
     return data;
   }
-  return state;
+  return { ...state };
 };

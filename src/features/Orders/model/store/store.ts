@@ -16,7 +16,7 @@ export const setOrderStateEvent = createEvent();
 export const addProductEvent = createEvent<IOrder>();
 export const setQuantityEvent = createEvent<ISetQuantity>();
 export const removeProductEvent = createEvent<number>();
-export const removeOrderEvent = createEvent<number>();
+export const removeOrderEvent = createEvent();
 
 export const $order = createStore<IOrderSchema>(initialState)
   .on(setOrderStateEvent, setOrderStateFn)

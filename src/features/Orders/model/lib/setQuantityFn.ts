@@ -14,4 +14,6 @@ export const setQuantityFn = (state: IOrderSchema, payload: ISetQuantity) => {
   state.totalPrice = getTotalPrice(state.orders);
   state.totalQuantity = getTotalQuantity(state.orders);
   localStorage.setItem(ORDER, JSON.stringify(state));
+
+  return { ...state };
 };

@@ -3,8 +3,7 @@ import { FC, useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { IProduct } from 'shared/types/IProduct';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { orderActions } from '../../model/slice/orderSlice';
+import { removeProductEvent, setQuantityEvent } from 'features/orders';
 import s from './OrderItem.module.scss';
 
 interface OrderItemProps {
@@ -13,19 +12,18 @@ interface OrderItemProps {
 }
 
 const OrderItem: FC<OrderItemProps> = ({ product, maxQuantity }) => {
-  const dispatch = useAppDispatch();
   const [quantity, setQuantity] = useState(product.quantity);
 
   const onChange = (e: number) => {
     if (e === 0) {
-      dispatch(orderActions.removeProduct(product.id));
+      removeProductEvent(product.id);
     }
     setQuantity(e);
-    dispatch(orderActions.setQuantity({ product, quantity: e }));
+    setQuantityEvent({ product, quantity: e });
   };
 
   const handleClick = () => {
-    dispatch(orderActions.removeProduct(product.id));
+    removeProductEvent(product.id);
   };
 
   return (

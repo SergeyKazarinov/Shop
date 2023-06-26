@@ -1,5 +1,6 @@
+import { useStore } from 'effector-react';
+import { $order } from 'features/orders';
 import { FC } from 'react';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 import Button, { ThemeButtonEnum } from 'shared/ui/Button/Button';
 import OrderItem from '../OrderItem/OrderItem';
 import s from './OrderForm.module.scss';
@@ -9,9 +10,7 @@ interface OrderFromProps {
 }
 
 const OrderForm: FC<OrderFromProps> = ({ onBuy }) => {
-  const orders = useAppSelector((store) => store.order.orders);
-  const totalQuantity = useAppSelector((store) => store.order.totalQuantity);
-  const totalPrice = useAppSelector((store) => store.order.totalPrice);
+  const { orders, totalPrice, totalQuantity } = useStore($order);
 
   const orderList = orders.map((item) => (
     <OrderItem product={item.product} maxQuantity={item.maxQuantity} key={item.product.id} />

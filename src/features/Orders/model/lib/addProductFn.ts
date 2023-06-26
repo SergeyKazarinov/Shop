@@ -19,11 +19,12 @@ export const addProductFn = (state: IOrderSchema, payload: IOrder) => {
   } else {
     state.orders = [...state.orders, payload];
   }
+
   state.totalQuantity += payload.product.quantity;
   state.totalPrice += (payload.product.price * payload.product.quantity);
   state.totalPrice = Number(state.totalPrice.toFixed(2));
 
   localStorage.setItem(ORDER, JSON.stringify(state));
 
-  return state;
+  return { ...state };
 };
