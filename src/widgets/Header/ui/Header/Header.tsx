@@ -5,9 +5,10 @@ import { getPathArrayFromLocation } from '@shared/lib/getPathArrayFromLocation';
 import { Button, ThemeButtonEnum } from '@shared/ui/Button';
 import { useStore } from 'effector-react';
 import { FC, memo, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import s from './Header.module.scss';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const Header: FC = () => {
   const { pathname } = useLocation();
@@ -24,34 +25,19 @@ const Header: FC = () => {
     setIsOpenOrderModal((state) => !state);
   };
 
-  let crumb: string | undefined;
-  let isCategory = false;
+  let title: string | undefined;
 
-  const breadcrumbs = pathArray.map((item, index) => {
-    const routeTo = `/${pathArray.slice(0, index + 1).join('/')}`;
-
+  pathArray.forEach((item, index) => {
     if (index === 0) {
       const hasCategory = categories.find((el) => el.id === Number(item));
       if (hasCategory) {
-        crumb = hasCategory.title;
-        isCategory = true;
+        title = hasCategory.title;
       }
     }
 
     if (index === 1) {
-      crumb = product?.title;
+      title = product?.title;
     }
-
-    const isLast = index === pathArray.length - 1;
-
-    return isLast
-      ? (<span key={index}>{` / ${crumb}`}</span>)
-      : (
-        <span key={index}>
-          <span>/ </span>
-          <Link to={routeTo} >{crumb}</Link>
-        </span>
-      );
   });
 
   const handleBuy = () => {
@@ -67,7 +53,7 @@ const Header: FC = () => {
   return (
     <header className={s.header}>
       <div className={s.flex} id='basket'>
-        <h1 className={s.title}>{crumb || 'Магазин'}</h1>
+        <h1 className={s.title}>{title || 'Магазин'}</h1>
         <Button
           className={s.button}
           theme={ThemeButtonEnum.ORDER}
@@ -87,9 +73,7 @@ const Header: FC = () => {
         />}
         {isOpenBuyModal && <BuyModal isOpen={isOpenBuyModal} onClose={handleCloseBuyModal} />}
       </div>
-      <div className={s.breadCrumbs}>
-        {crumb && isCategory && breadcrumbs}
-      </div>
+      <Breadcrumbs />
     </header>
   );
 };

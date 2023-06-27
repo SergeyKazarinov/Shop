@@ -1,5 +1,5 @@
-import { $categories, setErrorMessageEvent } from '@entities/categoriesList';
-import { $products, getProductByIdFx } from '@entities/productList';
+import { $categories } from '@entities/categoriesList';
+import { $products, getProductByIdFx, setErrorMessageEvent } from '@entities/productList';
 import { $order, addProductEvent } from '@features/orders';
 import { Button, ThemeButtonEnum } from '@shared/ui/Button';
 import { ErrorMessage } from '@shared/ui/ErrorMessage';

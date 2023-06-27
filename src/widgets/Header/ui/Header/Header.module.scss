@@ -5,6 +5,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .flex {
@@ -13,10 +14,6 @@
   justify-content: space-between;
   height: 100%;
   position: relative;
-}
-
-.breadCrumbs {
-  margin-top: 10px;
 }
 
 .button {
