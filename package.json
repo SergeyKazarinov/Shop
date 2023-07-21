@@ -6,6 +6,7 @@
   "scripts": {
     "start": "vite",
     "start:server": "json-server --watch ./json-server/db.json",
+    "start:dev": "concurrently \"npm run start:server\" \"npm run start\"",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -30,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.2.0",
     "eslint": "^8.38.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
